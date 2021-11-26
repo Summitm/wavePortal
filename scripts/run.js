@@ -1,5 +1,5 @@
 const main = async () => {
-    const [owner, randomVisitors] = await hre.ethers.getSigners()
+    const [owner, randomVisitors] = await hre.ethers.getSigners();
     // compile the contract
     const waveContractFactory = await hre.ethers.getContractFactory('WavePortal');
     const waveContract = await waveContractFactory.deploy();
@@ -7,32 +7,24 @@ const main = async () => {
     await waveContract.deployed();
 
     console.log("Contract deployed to: ", waveContract.address);
-    console.log("Contract deployed by: ", owner.address);
+    // console.log("Contract deployed by: ", owner.address);
 
     // check the wavecount to see its 0
     let waveCount;
     waveCount = await waveContract.getTotalWaves();
+    console.log(waveCount.toNumber());
 
     // wave
-    let waveTxn = await waveContract.wave();
+    let waveTxn = await waveContract.wave('Always a coding machine!');
     await waveTxn.wait();
 
-    // view the totalwaves to see that it changed
-    waveCount = await waveContract.getTotalWaves();
-
     // allow random users to wave
-    waveTxn = await waveContract.connect(randomVisitors).wave();
+    waveTxn = await waveContract.connect(randomVisitors).wave('I like Solidity!');
     await waveTxn.wait();
 
     // read total waves
-    waveCount = await waveContract.getTotalWaves();
-
-    // allow random users to wave
-    waveTxn = await waveContract.connect(randomVisitors).wave();
-    await waveTxn.wait();
-
-    // read total waves
-    waveCount = await waveContract.connect(randomVisitors).getTotalWaves();
+    let totalWaves = await waveContract.getAllWaves();
+    console.log(totalWaves);
 }
 
 // run main
