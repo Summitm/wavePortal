@@ -37,8 +37,8 @@
       ]
     },
     "/home/phpengine/projects/web3/wave-portal/contracts/WavePortal.sol": {
-      "lastModificationDate": 1637948793473,
-      "contentHash": "a45ccb3b29b7794db18965d05d70081e",
+      "lastModificationDate": 1638045985819,
+      "contentHash": "7df62dff4ec737ab49f24e4d72229e7c",
       "sourceName": "contracts/WavePortal.sol",
       "solcConfig": {
         "version": "0.8.4",
